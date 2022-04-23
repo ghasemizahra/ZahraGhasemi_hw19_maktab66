@@ -1,35 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './components/Header'
+import "./App.css";
+import Header from "./components/Header";
+import Context from "./context/checkLogin";
+import { useState } from "react";
+import Login from './pages/Login'
+import Dashbord from './pages/Dashbord'
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home'
 import AbilitySection from './components/AbilitySection'
-import EditForm from './components/EditForm'
-import {useState} from 'react'
-import {Container, Grid, Box} from '@mui/material';
+import { Grid} from '@mui/material';
 
+ 
 function App() {
-  const [webDesign, setWebDesign] = useState([])
-  const [fronEnd, setFronEnd] = useState([])
-  const [backEnd, setBackEnd] = useState([])
-  const [edit, setEdit] = useState(false)
-
-  const handleClick = () => setEdit(true)
 
   return (
-    <div className="App">
-      <Header />
-        <Grid container justifyContent={'space-around'} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{mt: 2}}>
-          <Grid item xs={6}>
-              <AbilitySection title="Web Design" handleClick={handleClick}/>
-              <AbilitySection title="Front-End" handleClick={handleClick}/>
-              <AbilitySection title="Back-End" handleClick={handleClick}/>
+    <>
+
+      <Context>
+     
+ <Grid item xs={6}>  
+ <Routes>     
+         <Route path="/" element={<Header />}>
+            
+          <Route path="/" element={<Home/>} />
+            <Route path='/login' element={<Login />} />
+              <Route path="/Dashbord" element={<Dashbord/>}/>
+              </Route>
+        </Routes>
           </Grid>
+      <Grid container justifyContent={'space-around'} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{mt: 2}}>
           <Grid item xs={6}>
-              <EditForm edit={edit}/>
+          <AbilitySection title="Web Design" />
+              <AbilitySection title="Front-End" />
+              <AbilitySection title="Back-End" />
+          
           </Grid>
+         
       </Grid>
+       
+
+         
+      </Context>
       
-      
-    </div>
+    </>
   );
 }
 

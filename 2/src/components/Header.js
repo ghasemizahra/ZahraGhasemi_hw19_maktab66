@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,12 +6,20 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import {Link,Outlet} from 'react-router-dom'
+import CheckLogin from "../context/checkLogin";
 
-export default function ButtonAppBar() {
+ 
+
+export default function Header() {
+
+
+
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar sx={{justifyContent: 'space-between'}}>
+        <Toolbar>
           <IconButton
             size="large"
             edge="start"
@@ -21,12 +29,16 @@ export default function ButtonAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div">
-            my skills withinMaterial UI
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Programming
           </Typography>
-          <Button color="inherit">+</Button>
+          <Button color="inherit"><Link to="/login">Login</Link></Button>
+          <Button color="inherit"><Link to="/dashbord">dashbord</Link></Button>
+          {/* <Button color="inherit" onClick={handleState}>+</Button> */}
         </Toolbar>
       </AppBar>
     </Box>
+    <Outlet/>
+    </>
   );
 }
